@@ -1,16 +1,24 @@
 #include "Arduino.h"
 #include "Morse.h"
 
+#define DEFAULT_SPEED 250
+
 Morse::Morse(int pin)
 {
-  Morse(pin, 250);
+	init(pin, DEFAULT_SPEED);
 }
 
 Morse::Morse(int pin, int delayLength)
 {
-	pinMode(pin, OUTPUT);
+	init(pin, delayLength);
+}
+
+void init(int pin, int delayLength)
+{
 	_pin = pin;
 	_delayLength = delayLength;
+
+	pinMode(_pin, OUTPUT);
 }
 
 void Morse::dot()
@@ -32,8 +40,6 @@ void Morse::dash()
 
 void Morse::showLetter(char a)
 {
-	Serial.print("showing ");
-	Serial.println(a);
   switch(a)
   {
     case 'a':
@@ -141,7 +147,7 @@ void Morse::showLetter(char a)
     break;
     
     default:
-	Serial.println("no letter");
+	// No letter
     break;
     
   }

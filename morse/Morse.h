@@ -8,6 +8,7 @@ class Morse
   public:
     Morse(int pin);
 	Morse(int pin, int delayLength);
+	void init(int pin, int delayLength);
     void dot();
     void dash();
     void showLetter(char a);
